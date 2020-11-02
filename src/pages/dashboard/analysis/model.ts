@@ -55,6 +55,8 @@ const Model: ModelType = {
 
   reducers: {
     save(state, { payload }) {
+      console.log('state', state);
+      console.log('payload', payload);
       return {
         ...state,
         ...payload,

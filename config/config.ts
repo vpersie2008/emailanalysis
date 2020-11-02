@@ -78,6 +78,14 @@ export default defineConfig({
                   path: '/dashboard/analysis',
                   component: './dashboard/analysis',
                 },
+
+                {
+                  name: 'analysis-email',
+                  icon: 'smile',
+                  path: '/dashboard/email',
+                  component: './dashboard/analysis-email',
+                },
+
                 {
                   name: 'monitor',
                   icon: 'smile',
