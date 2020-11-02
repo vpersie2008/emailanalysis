@@ -6,11 +6,12 @@ import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import { connect, Dispatch } from 'umi';
 import { AnalysisData } from './data.d';
 import PageLoading from './components/PageLoading';
-
+import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import { getTimeDistance } from './utils/utils';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 const EmailMetrics = React.lazy(() => import('./components/EmailMetrics'));
-
+const SalesCard = React.lazy(() => import('./components/SalesCard'));
 
 interface AnalysisProps {
     dashboardemailanalysis: AnalysisData;
@@ -18,13 +19,13 @@ interface AnalysisProps {
     loading: boolean;
 }
 
-
 const AnalysisEmail: React.FC<AnalysisProps> = (props) => {
 
     const { dispatch } = props;
 
     const {
-        visitData
+        visitData,
+        salesData
     } = props.dashboardemailanalysis;
 
 
@@ -49,6 +50,18 @@ const AnalysisEmail: React.FC<AnalysisProps> = (props) => {
                     {/* <IntroduceRow loading={props.loading} visitData={visitData} /> */}
                     <EmailMetrics loading={props.loading} visitData={visitData} />
                 </Suspense>
+
+                <Suspense fallback={null}>
+                    <SalesCard
+                        rangePickerValue={getTimeDistance('year')}
+                        salesData={salesData}
+                        isActive={() => ''}
+                        handleRangePickerChange={() => { }}
+                        loading={props.loading}
+                        selectDate={() => { }}
+                    />
+                </Suspense>
+
             </React.Fragment>
         </GridContent>
     );
